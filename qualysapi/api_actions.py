@@ -528,3 +528,12 @@ class QGActions:
             scan.find("TYPE"),
             scan.find("USER_LOGIN"),
         )
+
+    def cancelScan(self, action, scan_ref):
+        call = "/api/2.0/fo/scan/"
+        parameters = {"action": action, "echo_request": 1, "scan_ref": scan_ref}
+        res = objectify.fromstring(self.request(call, parameters).encode("utf-8")).RESPONSE
+        print(res)
+        code = getattr(res, "CODE", "")
+        logging.debug("%s %s %s", res.DATETIME, code, res.TEXT)
+        return code, res
