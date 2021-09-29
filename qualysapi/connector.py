@@ -281,7 +281,7 @@ class QGConnector(api_actions.QGActions):
         return url, data, headers
 
     def request_streaming(
-        self, api_call, data=None, api_version=None, http_method=None, verify=True
+        self, api_call, data=None, api_version=None, http_method=None, verify=False
     ):
         """ Return QualysGuard streaming response """
 
@@ -345,7 +345,7 @@ class QGConnector(api_actions.QGActions):
         http_method=None,
         concurrent_scans_retries=0,
         concurrent_scans_retry_delay=0,
-        verify=True,
+        verify=False,
     ):
         """ Return QualysGuard API response.
 
