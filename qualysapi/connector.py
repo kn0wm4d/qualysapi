@@ -346,6 +346,7 @@ class QGConnector(api_actions.QGActions):
         concurrent_scans_retries=0,
         concurrent_scans_retry_delay=0,
         verify=False,
+        pdf_file=False,
     ):
         """ Return QualysGuard API response.
 
@@ -574,4 +575,6 @@ class QGConnector(api_actions.QGActions):
             print("Headers = \n", request.headers)
             logger.error("Headers = \n%s", str(request.headers))
             return False
+        if pdf_file:
+            response = request.content
         return response
