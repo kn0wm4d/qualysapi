@@ -61,17 +61,6 @@ class QGConnector(api_actions.QGActions):
         # Set up requests max_retries.
         logger.debug("max_retries = \n%s", max_retries)
         self.session = requests.Session()
-        retry = Retry(
-            total=max_retries,
-            read=max_retries,
-            connect=max_retries,
-            backoff_factor=0.3,
-            status_forcelist=(500, 502, 504),
-        )
-        http_max_retries = requests.adapters.HTTPAdapter(max_retries=retry)
-        https_max_retries = requests.adapters.HTTPAdapter(max_retries=retry)
-        self.session.mount("http://", http_max_retries)
-        self.session.mount("https://", https_max_retries)
 
     def __call__(self):
         return self
